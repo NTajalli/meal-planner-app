@@ -2,6 +2,11 @@
 
 # dependencies
 node_modules/
+ios/
+android/
+.expo/  
+.amplify/
+./amplify_outputs.json
 
 # Expo
 .expo/
@@ -31,8 +36,14 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
 
 app-example
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*

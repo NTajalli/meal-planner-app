@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Below is a description of my project. It has the frontend and backend under this directory.
+
+# Meal Planner App (React Native + Amplify)
+
+A mobile-first kitchen and meal management app designed to help users organize ingredients, appliances, cookware, and meals with a clean, intuitive interface. Built with a focus on scalability, security, and user personalization.
+
+## 🌟 Features
+
+- **User Authentication**: Secure sign-in and sign-up via AWS Amplify Auth (Cognito), with Google OAuth support and custom theming using Amplify UI components.
+- **Ingredient Management**: 
+  - Add, edit, delete ingredients
+  - Track quantity, unit, expiration date, storage type, and allergens
+  - View by ingredient type
+- **Appliances & Cookware Tracking**:
+  - Manage available appliances (toggle availability)
+  - Track cookware quantity with ability to edit/delete
+- **Custom Modals**: Reusable modals (`AddIngredientModal`, `EditCookwareModal`, etc.) for seamless data entry and editing
+- **Dynamic Theming**:
+  - Custom theme tokens (Amplify-compatible)
+  - Supports light/dark mode
+- **Amplify Data Integration**:
+  - All CRUD operations use `generateClient<Schema>()`
+  - Auth-mode scoped to `userPool` (per-user data)
+- **Pull-to-Refresh & Loading UX**: Clean loading indicators and list refresh logic
+- **Scalable Architecture**: Code modularized with separation of components, hooks, and schema types
+
+## 🧰 Tech Stack
+
+- **Frontend**: React Native (Expo)
+- **Navigation**: `expo-router`, `@react-navigation/native`
+- **Backend**: AWS Amplify (Cognito Auth, Data)
+- **State & Context**: `useAuth`, `useAuthenticatedApi`, `useTheme` (Amplify UI)
+- **Theming**: Amplify Design Tokens, custom theme with overrides
+- **Icons**: `react-native-vector-icons`, `@expo/vector-icons`
+- **Type Safety**: Full TypeScript with typed Amplify schemas
+
+## 🔜 Upcoming Features
+
+- Recipe generation based on ingredients
+- Meal planning calendar
+- Barcode scanner for ingredients (already scaffolded)
+- AI-powered suggestions for meals using available inventory
+
+
+## Import Notes
+- We are utilizing Amplify Gen 2! Please base all your recommendations and modifications on Gen 2 documentation, not Gen 1! This is pivotal.
+- All Amplify resources (functions, schema, etc) is defined under the `./amplify` directory
+
