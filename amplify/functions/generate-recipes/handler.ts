@@ -6,6 +6,8 @@ import { Schema } from "../../data/resource";
 import OpenAI from "openai";
 import { zodResponseFormat } from "openai/helpers/zod";
 import { z } from "zod";
+import { AppSyncIdentityCognito } from 'aws-lambda';
+
 
 // Initialize Amplify and OpenAI
 const openai = new OpenAI();
@@ -36,22 +38,20 @@ const MealPlanResponseSchema = z.object({
 
 export const handler: Schema["GenerateRecipes"]["functionHandler"] = async (event, context) => {
   try {
-    console.log("Owner: ", event.arguments.owner);
-
-    if (!event.arguments.owner) {
-      throw new Error("Missing owner identifier.");
-    }
+    console.log("Context: ", JSON.stringify(context));
+    console.log("Event: ", JSON.stringify(event));
+    const identity = event.identity as AppSyncIdentityCognito;
 
     // ✅ Fetch user-specific data (ingredients, cookware, appliances)
     const [ingredients, cookware, appliances] = await Promise.all([
       client.models.Ingredient.list({
-        filter: { owner: { contains: event.arguments.owner } },
+        filter: { owner: { contains: identity.sub  || "" } },
       }),
       client.models.Cookware.list({
-        filter: { owner: { contains: event.arguments.owner } },
+        filter: { owner: { contains: identity.sub } },
       }),
       client.models.Appliance.list({
-        filter: { owner: { contains: event.arguments.owner } },
+        filter: { owner: { contains: identity.sub } },
       }),
     ]);
 

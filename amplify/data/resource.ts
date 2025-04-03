@@ -55,7 +55,6 @@ const schema = a.schema({
     .query()
     .arguments({
       query: a.string().required(),
-      owner: a.id().required(),
     })
     .authorization((allow) => [
       allow.authenticated(),
@@ -76,7 +75,6 @@ const schema = a.schema({
     .query()
     .arguments({
       query: a.string().required(),
-      owner: a.id().required(),
     })
     .authorization((allow) => [
       allow.authenticated(), // ✅ Only authenticated users can call this
@@ -85,7 +83,7 @@ const schema = a.schema({
     .returns(a.ref("RouterLLMResponse").required()),
     
 }).authorization((allow) => [
-  allow.resource(routerLLM), // Router LLM can call any function
+  allow.resource(routerLLM), 
   allow.resource(generateRecipes)
 ]);
 
@@ -93,8 +91,4 @@ export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
   schema,
-  authorizationModes: {
-    defaultAuthorizationMode: "iam", // ✅ Enforces IAM-based security
-    
-  },
   });

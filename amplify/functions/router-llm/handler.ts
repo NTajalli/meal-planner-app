@@ -32,6 +32,7 @@ export const handler = async (event: { arguments: { query: string; owner: string
 
     const query = event.arguments.query;
     const owner = event.arguments.owner;
+    console.log(JSON.stringify(context));
 
     console.log("🔍 Processing user query:", query);
 

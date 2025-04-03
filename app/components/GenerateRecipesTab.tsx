@@ -110,7 +110,7 @@ const GenerateRecipesTab = () => {
     setLLMResponse(null);
     setApplyResponse(null);
     try {
-      const response = await client.queries.GenerateRecipes({query: input, owner: user.userId}, {authMode: "userPool"});
+      const response = await client.queries.GenerateRecipes({query: input});
       setLLMResponse(response.data);
     } catch (error) {
       console.error("Error generating recipes:", error);
